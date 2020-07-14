@@ -18,3 +18,8 @@ Hello, SAXYCOW!
 * 2 덧셈 모듈 만들기
 * C로 컴파일 된 Python 덧셈 모듈 만들어보기
 
+ ```sh
+$ python plus_mod_setup.py install
+$ python test.py
+```
+간단한 테스트. C로 돌린 덧셈 반복문과 python 덧셈 반복문의 시간차이
