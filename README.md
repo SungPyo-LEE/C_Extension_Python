@@ -26,11 +26,11 @@ $ python test.py
 
 * 3 배열 반환하기
 ** C함수에서 배열값을 반환하기 위해 Numpy를 사용하자
-1 Numpy Array를 C함수로 Return 할 수 있다.
+***1 Numpy Array를 C함수로 Return 할 수 있다.
 
 * 4 배열을 Input 값으로 받기
 ** C에서 파이썬 List 자료형을 input 값으로 받아보자.
-1 python 공식적으로 적용하는 C api Pyobejct O!를 이용 -> 실패. 한번 더 해보기
-2 Numpy Array를 Input 값으로 받기
+***1 python 공식적으로 적용하는 C api Pyobejct O!를 이용 -> 실패. 한번 더 해보기
+***2 Numpy Array를 Input 값으로 받기
 
 * 5 이제 정렬부터 해보자
