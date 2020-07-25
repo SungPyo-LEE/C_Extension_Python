@@ -1,30 +1,31 @@
-  
+#include <numpy/arrayobject.h>  
 #include <stdio.h>
 #include <Python.h>
 
-static PyObject* input_array_test(PyObject *self, PyObject *args){
-	PyObject *pList;
-	PyObject *pItem;
-	Py_ssize_t n;
-	int i;
+static PyObject* arr_size(PyObject *self, PyObject *args){
+	
+    PyArrayObject *X;
 
-	/*
-	Store a Python object in a C object pointer. This is similar to O, but takes two C arguments: the first is the address of a Python type object, the second is the address of the C variable (of type PyObject*) into which the object pointer is stored. If the Python object does not have the required type, TypeError is raised.
-	*/
-	if (!PyArg_ParseTuple(args, "O!", &PyList_Type, &pList)) {
-		PyErr_SetString(PyExc_TypeError, "parameter must be a list.");
-		return NULL;
-	}
+    PyArg_ParseTuple(args, "O!", &PyArray_Type, &X);
+    npy_intp N = PyArray_SIZE(X);
+	printf("%li", N);
+    Py_RETURN_NONE;
+}
 
-	n = PyList_Size(pList);
-	for (i=0; i<n; i++) {
-		pItem = PyList_GetItem(pList, i);
-	}
-	Py_RETURN_NONE;
+static PyObject* list_size(PyObject *self, PyObject *args){
+	
+    PyObject *pList;
+
+    PyArg_ParseTuple(args, "O!", &PyList_Type, &pList);
+    int N = PyList_Size(pList);
+	printf("%d", N);
+	
+    Py_RETURN_NONE;
 }
 
 static PyMethodDef input_arr[] = { 
-	{"input_array_test", input_array_test, METH_VARARGS, "input_array_method_on_C"},
+	{"arr_size", arr_size, METH_VARARGS, "array_size_method_on_C"},
+	{"list_size", list_size, METH_VARARGS, "list_size_method_on_C"},
 		{NULL}
 };
 
@@ -41,8 +42,12 @@ static struct PyModuleDef arr_mod = {
 
 };
 
-PyMODINIT_FUNC
-PyInit_plus_mod(void)
+PyMODINIT_FUNC PyInit_input_arr(void)
 {
-	return PyModule_Create(&arr_mod);
+	PyObject *module;
+	module = PyModule_Create(&arr_mod);
+	if(module==NULL) return NULL;
+	import_array();
+	if (PyErr_Occurred()) return NULL;
+	return module;
 }

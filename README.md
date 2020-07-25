@@ -30,8 +30,30 @@ $ python test.py
 
 * 4 배열을 Input 값으로 받기
 ** C에서 파이썬 List 자료형을 input 값으로 받아보자.
-***1 python 공식적으로 적용하는 C api Pyobejct O!를 이용 -> 실패. 한번 더 해보기
+***1 python 공식적으로 적용하는 C api Pyobejct O!를 이용. List를 Input 값으로 받을 수 있다.
 ***2 Numpy Array를 Input 값으로 받기
+ ```sh
+$ python setup.py install
+$ python
+>> import input_arr
+>> a = [1,2,3,4,5]
+>> print(input_arr.list_size(a))
+5
+>> 2d_list = [[1,2,3],[4,5,6]]
+>> print(input_arr.list_size(2d_list))
+2
+>> print(input_arr.list_size(2d_list[0]))
+3
+>> import numpy as np
+>> np_arr = np.array([1,2,3,4,5])
+>> print(input_arr.array_size(np_arr))
+5
+>> np_2d_arr = np.array([[1,2,3],[4,5,6]])
+>> print(input_arr.array_size(np_2d_arr))
+3
+```
+*** array size와 list size 함수의 차이점. 나중에 더 자세히 살펴보자.
+*** 일단은 Numpy와 Python 기본 List 자료형을 모두 Input 값으로 받았다.
 
 * 5 이제 재귀함수부터 해보자.
 ** Python에서 포인터를 사용 할 수 있다는 가능성을 봤다.
